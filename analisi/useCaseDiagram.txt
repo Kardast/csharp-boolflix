@@ -1,0 +1,27 @@
+Casi d'uso
+	1. Login
+	2. Scelta profilo
+	3. Home
+		- Notifiche
+		- Logout
+		- Ricerca contenuto
+		- Scelta contenuto:
+			# l'utente può scegliere un contenuto (serie tv o film) dalle liste o dalla ricerca
+			# si apre una finestra specifica del contenuto scelto
+			# si possono effettuare le seguenti azioni
+				// eseguire download del film o di specifici episodi in caso di serie tv
+				// dare un voto tra tre opzioni
+				// aggiungere alla lista personale
+				// riprodurre il contenuto
+		- Account:
+			# si viene reindirizzati ad una pagina di possibili azioni:
+				// modifica password:
+					_ inserire password attuale
+					_ inserire nuova password
+					_ inserire nuova password
+					_ scegliere se uscire dall'account su tutti i dispositivi
+					_ salva
+					_ annulla operazione
+				// modifica piano
+				// gestisci dati di pagamento
+				// modifica singoli profili
