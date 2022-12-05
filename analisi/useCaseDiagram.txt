@@ -7,21 +7,44 @@ Casi d'uso
 		- Ricerca contenuto
 		- Scelta contenuto:
 			# l'utente può scegliere un contenuto (serie tv o film) dalle liste o dalla ricerca
-			# si apre una finestra specifica del contenuto scelto
+			# si apre una finestra specifica del contenuto scelto (NON CORRETTO)
+			# il sistema evidenzia il contenuto scelto
 			# si possono effettuare le seguenti azioni
 				// eseguire download del film o di specifici episodi in caso di serie tv
 				// dare un voto tra tre opzioni
 				// aggiungere alla lista personale
 				// riprodurre il contenuto
-		- Account:
-			# si viene reindirizzati ad una pagina di possibili azioni:
+
+		- Modifica password:
+			# il sistema presenta all'utente un'area per modificare la password
+				- un'area per inserire vecchia password
+				- un'area per inserire la nuova password
+				- un'area per verificare la nuova password	
+			# l'utente inserisce correttamente tutti i dati e procede con la modifica
+			# il sistema verifica i dati e presenta l'esito affermativo della modifica
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+				- Account:
+			# il sistema presenta all'utente una seria di informazioni:
 				// modifica password:
 					_ inserire password attuale
 					_ inserire nuova password
 					_ inserire nuova password
 					_ scegliere se uscire dall'account su tutti i dispositivi
-					_ salva
-					_ annulla operazione
+			# l'utente inserisce correttamente tutti i dati
 				// modifica piano
 				// gestisci dati di pagamento
 				// modifica singoli profili
