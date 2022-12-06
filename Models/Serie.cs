@@ -2,7 +2,7 @@
 {
     public class Serie : Content
     {
-        public List<Season> Seasons { get; set; }
+        public List<Season>? Seasons { get; set; }
 
     }
 }

@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 namespace csharp_boolflix.Controllers
 {
     [Authorize]
-
+    [Route("[controller]/[action]/{id?}", Order = 0)]
     public class FilmController : Controller
     {
         BoolflixDbContext db;
@@ -111,7 +111,7 @@ namespace csharp_boolflix.Controllers
                 return NotFound();
             }
 
-            contentRepository.Delete(film);
+            contentRepository.DeleteFilm(film);
 
             return RedirectToAction("Index");
         }

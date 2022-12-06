@@ -2,12 +2,16 @@
 {
     public interface IContentRepository
     {
+        //film
         List<Film> AllFilms();
-        List<Serie> AllSeries();
         void CreateFilm(Film film, List<int> selectedActors, List<int> selectedGenres);
-        void CreateSerie(Serie serie, List<int> selectedActors, List<int> selectedGenres, Season season);
-        void Delete(Film film);
         Film GetFilmById(int id);
+        void DeleteFilm(Film film);
+
+        //serie
+        List<Serie> AllSeries();
+        void CreateSerie(Serie serie, List<int> selectedActors, List<int> selectedGenres);
         Serie GetSerieById(int id);
+        void DeleteSerie(Serie serie);
     }
 }

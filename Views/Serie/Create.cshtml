@@ -1,48 +1,43 @@
 ﻿@using csharp_boolflix.Models.Form;
-@model FilmForm
+@model SerieForm
 
 <div class="container">
     <div class="row">
         <div class="col-12">
             <div class="d-flex align-items-center">
-                <h1 class="mt-3 mb-3">Nuovo film</h1>
+                <h1 class="mt-3 mb-3">Nuova serie</h1>
             </div>
 
-            <form asp-controller="Film" asp-action="Create" method="post">
+            <form asp-controller="Serie" asp-action="Create" method="post">
 
                 @Html.AntiForgeryToken()
 
                 <div class="mb-3">
                     <strong>Nome:</strong>
-                    <input asp-for="Film.Title" class="d-block w-100" />
-                    <span asp-validation-for="Film.Title" class="text-danger"></span>
+                    <input asp-for="Serie.Title" class="d-block w-100" />
+                    <span asp-validation-for="Serie.Title" class="text-danger"></span>
                 </div>
                 <div class="mb-3">
                     <strong>Descrizione:</strong>
-                    <textarea asp-for="Film.Description" rows="10" class="d-block w-100"></textarea>
-                    <span asp-validation-for="Film.Description" class="text-danger"></span>
+                    <textarea asp-for="Serie.Description" rows="10" class="d-block w-100"></textarea>
+                    <span asp-validation-for="Serie.Description" class="text-danger"></span>
                 </div>
                 <div class="mb-3">
                     <strong>Anno:</strong>
-                    <textarea asp-for="Film.Year" class="d-block w-100"></textarea>
-                    <span asp-validation-for="Film.Year" class="text-danger"></span>
+                    <textarea asp-for="Serie.Year" class="d-block w-100"></textarea>
+                    <span asp-validation-for="Serie.Year" class="text-danger"></span>
                 </div>
                 <div class="mb-3">
                     <strong>Immagine:</strong>
-                    <input asp-for="Film.Image" class="d-block w-100" />
-                    <span asp-validation-for="Film.Image" class="text-danger"></span>
-                </div>
-                <div class="mb-3">
-                    <strong>Duration:</strong>
-                    <input asp-for="Film.Duration" class="d-block w-100" />
-                    <span asp-validation-for="Film.Duration" class="text-danger"></span>
+                    <input asp-for="Serie.Image" class="d-block w-100" />
+                    <span asp-validation-for="Serie.Image" class="text-danger"></span>
                 </div>
                 <div class="mb-3">
                     <strong>Regista:</strong>
-                    <select asp-for="Film.DirectorId" rows="5" class="d-block w-100">
+                    <select asp-for="Serie.DirectorId" rows="5" class="d-block w-100">
                         @foreach (Director director in Model.Directors)
                         {
-                            @if (Model.Film.DirectorId == director.Id)
+                            @if (Model.Serie.DirectorId == director.Id)
                             {
                                 <option value="@director.Id" selected>@director.Name</option>
                             }

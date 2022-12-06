@@ -1,10 +1,10 @@
-﻿@model Film
+﻿@model Serie
 
 <div class="container">
     <div class="row">
         <div class="col-12">
             <div class="d-flex align-items-center">
-                <h1 class="mt-3 mb-3">Dettagli film</h1>
+                <h1 class="mt-3 mb-3">Dettagli serie</h1>
             </div>
             @*img*@
             <div class="post-single-image-container">
@@ -29,11 +29,6 @@
             <p>
                 <strong>Regista:</strong>
                 @Model.Director.Name
-            </p>
-            @*category*@
-            <p>
-                <strong>Durata:</strong>
-                @Model.Duration
             </p>
             @*genres*@
             @if(Model.Genres.Count > 0)

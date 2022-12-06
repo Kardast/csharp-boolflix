@@ -44,7 +44,7 @@ namespace csharp_boolflix.Models.Repositories
             db.Films.Add(film);
             db.SaveChanges();
         }
-        public void Delete(Film film)
+        public void DeleteFilm(Film film)
         {
             db.Films.Remove(film);
             db.SaveChanges();
@@ -53,15 +53,15 @@ namespace csharp_boolflix.Models.Repositories
         //Serie
         public List<Serie> AllSeries()
         {
-            return db.Series.Include(serie => serie.Actors).Include(serie => serie.Genres).Include(serie => serie.Seasons).ToList();
+            return db.Series.Include(serie => serie.Actors).Include(serie => serie.Genres).Include(serie => serie.Seasons).Include(film => film.Director).ToList();
         }
 
         public Serie GetSerieById(int id)
         {
-            return db.Series.Where(s => s.Id == id).Include("Actors").Include("Genres").Include("Seasons").FirstOrDefault();
+            return db.Series.Where(s => s.Id == id).Include("Actors").Include("Genres").Include("Seasons").Include("Director").FirstOrDefault();
         }
 
-        public void CreateSerie(Serie serie, List<int> selectedActors, List<int> selectedGenres, Season season)
+        public void CreateSerie(Serie serie, List<int> selectedActors, List<int> selectedGenres)
         {
 
             serie.Actors = new List<Actor>();
@@ -81,6 +81,12 @@ namespace csharp_boolflix.Models.Repositories
             }
 
             db.Series.Add(serie);
+            db.SaveChanges();
+        }
+
+        public void DeleteSerie(Serie serie)
+        {
+            db.Series.Remove(serie);
             db.SaveChanges();
         }
     }
