@@ -23,17 +23,10 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" href="@Url.Action("Index", "Film")">Film Index</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Film" asp-action="Create">Create Film</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" href="@Url.Action("Index", "Serie")">Serie Index</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Serie" asp-action="Create">Create Serie</a>
+                            <a class="nav-link" aria-current="page" href="@Url.Action("Index", "Film")">Admin</a>
                         </li>
 
                         @*aggiunta di componente per il login*@
