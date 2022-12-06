@@ -1,0 +1,62 @@
+﻿@model Film
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex align-items-center">
+                <h1 class="mt-3 mb-3">Dettagli film</h1>
+            </div>
+            @*img*@
+            <div class="post-single-image-container">
+                <img src="@Model.Image" alt="mmm film" width="900" height="400">
+            </div>
+            @*name*@
+            <p>
+                <strong>Nome:</strong>
+                @Model.Title
+            </p>
+            @*year*@
+            <p>
+                <strong>Anno:</strong>
+                @Model.Year
+            </p>
+            @*description*@
+            <p>
+                <strong>Descrizione:</strong>
+                @Model.Description
+            </p>
+            @*director*@
+            <p>
+                <strong>Regista:</strong>
+                @Model.Director.Name
+            </p>
+            @*category*@
+            <p>
+                <strong>Durata:</strong>
+                @Model.Duration
+            </p>
+            @*genres*@
+            @if(Model.Genres.Count > 0)
+            {
+                <p>
+                    <strong>Generi:</strong>
+                    @foreach(Genre genre in Model.Genres)
+                    {
+                        <span class="badge bg-primary">@genre.Name</span>
+                    }
+                </p>
+            }
+            @*actors*@
+            @if (Model.Actors.Count > 0)
+            {
+                <p>
+                    <strong>Attori:</strong>
+                    @foreach (Actor actor in Model.Actors)
+                    {
+                        <span class="badge bg-primary">@actor.Name</span>
+                    }
+                </p>
+            }
+        </div>
+    </div>
+</div>

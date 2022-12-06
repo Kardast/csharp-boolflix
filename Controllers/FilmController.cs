@@ -13,26 +13,40 @@ namespace csharp_boolflix.Controllers
     public class FilmController : Controller
     {
         BoolflixDbContext db;
-        DbContentRepository boolflixRepository;
+        IContentRepository contentRepository;
 
-        public FilmController(DbContentRepository _boolflixRepository, BoolflixDbContext _db) : base()
+        public FilmController(IContentRepository _contentRepository, BoolflixDbContext _db) : base()
         {
             db = _db;
 
-            boolflixRepository = _boolflixRepository;
+            contentRepository = _contentRepository;
         }
 
         //index page
         public IActionResult Index()
         {
-            List<Film> listFilm = boolflixRepository.AllFilms();
+            List<Film> listFilm = contentRepository.AllFilms();
             return View(listFilm);
+        }
+
+        //details
+        public IActionResult Details(int id)
+        {
+
+            Film film = contentRepository.GetFilmById(id);
+
+            if (film == null)
+            {
+                return NotFound();
+            }
+
+            return View(film);
         }
 
         //create page
         public IActionResult Create()
         {
-            ContentForm formData = new ContentForm();
+            FilmForm formData = new FilmForm();
 
             formData.Film = new Film();
             formData.Directors = db.Directors.ToList();
@@ -54,6 +68,52 @@ namespace csharp_boolflix.Controllers
             }
 
             return View(formData);
+        }
+
+        //create save
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(FilmForm formData)
+        {
+            if (!ModelState.IsValid)
+            {
+                formData.Directors = db.Directors.ToList();
+
+                formData.Actors = new List<SelectListItem>();
+                List<Actor> actorsList = db.Actors.ToList();
+                foreach (Actor actor in actorsList)
+                {
+                    formData.Actors.Add(new SelectListItem(actor.Name, actor.Id.ToString()));
+                }
+
+                formData.Genres = new List<SelectListItem>();
+                List<Genre> genreList = db.Genres.ToList();
+                foreach (Genre genre in genreList)
+                {
+                    formData.Genres.Add(new SelectListItem(genre.Name, genre.Id.ToString()));
+                }
+                return View(formData);
+            }
+
+            contentRepository.CreateFilm(formData.Film, formData.SelectedGenres, formData.SelectedActors);
+
+            return RedirectToAction("Index");
+        }
+
+        //delete
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Delete(int id)
+        {
+            Film film = contentRepository.GetFilmById(id);
+            if (film == null)
+            {
+                return NotFound();
+            }
+
+            contentRepository.Delete(film);
+
+            return RedirectToAction("Index");
         }
     }
 }

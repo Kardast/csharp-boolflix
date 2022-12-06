@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace csharp_boolflix.Models.Repositories
 {
-    public class DbContentRepository
+    public class DbContentRepository : IContentRepository
     {
         BoolflixDbContext db;
 
@@ -15,13 +15,13 @@ namespace csharp_boolflix.Models.Repositories
         //Film
         public List<Film> AllFilms()
         {
-            return db.Films.Include(film => film.Actors).Include(film => film.Genres).Include(film =>film.Director).ToList();
+            return db.Films.Include(film => film.Actors).Include(film => film.Genres).Include(film => film.Director).ToList();
         }
         public Film GetFilmById(int id)
         {
-            return db.Films.Where(f => f.Id == id).Include("Actors").Include("Genres").Include("Directors").FirstOrDefault();
+            return db.Films.Where(f => f.Id == id).Include("Actors").Include("Genres").Include("Director").FirstOrDefault();
         }
-        public void CreateFilm(Film film, List<int> selectedActors, List<int> selectedGenres, Director director)
+        public void CreateFilm(Film film, List<int> selectedActors, List<int> selectedGenres)
         {
 
             film.Actors = new List<Actor>();
@@ -40,9 +40,13 @@ namespace csharp_boolflix.Models.Repositories
                 film.Genres.Add(genre);
             }
 
-            film.Director = director;
 
             db.Films.Add(film);
+            db.SaveChanges();
+        }
+        public void Delete(Film film)
+        {
+            db.Films.Remove(film);
             db.SaveChanges();
         }
 
