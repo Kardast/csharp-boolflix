@@ -1,0 +1,22 @@
+﻿@model Season
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex align-items-center">
+                <h1 class="mt-3 mb-3">Nuova Stagione</h1>
+            </div>
+            <form asp-controller="Serie" asp-action="AddSeason" asp-route-id="@Model.SerieId" method="post">
+                @Html.AntiForgeryToken()
+                <div class="mb-3">
+                    <strong>Nome:</strong>
+                    <input asp-for="@Model.Title" class="d-block w-100" />
+                    <span asp-validation-for="@Model.Title" class="text-danger"></span>
+                </div>
+                <div class="text-end">
+                    <input type="submit" class="btn btn-small btn-success" value="Salva">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -53,12 +53,12 @@ namespace csharp_boolflix.Models.Repositories
         //Serie
         public List<Serie> AllSeries()
         {
-            return db.Series.Include(serie => serie.Actors).Include(serie => serie.Genres).Include(serie => serie.Seasons).Include(film => film.Director).ToList();
+            return db.Series.Include(serie => serie.Actors).Include(serie => serie.Genres).Include(serie => serie.Seasons).Include(serie => serie.Director).ToList();
         }
 
         public Serie GetSerieById(int id)
         {
-            return db.Series.Where(s => s.Id == id).Include("Actors").Include("Genres").Include("Seasons").Include("Director").FirstOrDefault();
+            return db.Series.Where(s => s.Id == id).Include("Actors").Include("Genres").Include("Seasons").Include("Director").Include("Seasons.Episodes").FirstOrDefault();
         }
 
         public void CreateSerie(Serie serie, List<int> selectedActors, List<int> selectedGenres)
@@ -89,5 +89,29 @@ namespace csharp_boolflix.Models.Repositories
             db.Series.Remove(serie);
             db.SaveChanges();
         }
+
+        //seasons
+        public void CreateSeason(Season season)
+        {
+            db.Seasons.Add(season);
+            db.SaveChanges();
+        }
+
+        //public List<Season> GetSeasons(int id)
+        //{
+        //    return db.Seasons.Where(s => s.SerieId == id).ToList();
+        //}
+
+        //episodes
+        public void CreateEpisode(Episode episode)
+        {
+            db.Episodes.Add(episode);
+            db.SaveChanges();
+        }
+
+        //public List<Episode> GetEpisodes(int id)
+        //{
+        //    return db.Episodes.Where(e => e.SeasonId == id).ToList();
+        //}
     }
 }

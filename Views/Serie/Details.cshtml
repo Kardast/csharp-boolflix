@@ -52,6 +52,34 @@
                     }
                 </p>
             }
+
+            @*add season*@
+            <a class="btn btn-info" asp-area="" asp-controller="Serie" asp-action="AddSeason" asp-route-id="@Model.Id">Aggiungi Stagione</a>
+
+            @*show season*@
+            @if (Model.Seasons.Count > 0)
+            {
+                <p>
+                    @foreach (Season season in Model.Seasons)
+                    {
+                        <strong>Stagione: </strong>
+
+                        <span>@season.Title</span> <br />
+
+                        <a class="btn btn-success" asp-area="" asp-controller="Serie" asp-action="AddEpisode" asp-route-id="@season.Id">Aggiungi Episodio</a> <br />
+
+                        <strong>Episodi:</strong> <br />
+                        @if (season.Episodes.Count > 0)
+                        {
+                            @foreach (Episode episode in season.Episodes)
+                            {
+                                <span class="badge bg-primary">@episode.Title</span>
+                            }
+
+                        } <br /> <br/>
+                    }
+                </p>
+            }
         </div>
     </div>
 </div>

@@ -13,5 +13,7 @@
         void CreateSerie(Serie serie, List<int> selectedActors, List<int> selectedGenres);
         Serie GetSerieById(int id);
         void DeleteSerie(Serie serie);
+        void CreateSeason(Season season);
+        void CreateEpisode(Episode episode);
     }
 }
